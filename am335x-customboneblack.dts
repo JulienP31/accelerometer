@@ -1,0 +1,33 @@
+#include "am335x-boneblack-wireless.dts"
+
+
+&am33xx_pinmux {
+	i2c1_pins: pinmux_i2c1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D1 , PIN_INPUT_PULLUP, MUX_MODE2) /* spi0_d1.i2c1_sda */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT_PULLUP, MUX_MODE2) /* spi0_cs0.i2c1_scl */
+		>;
+	};
+	acc_int1_pins: pinmux_acc_int1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_GPMC_A0, PIN_INPUT_PULLUP, MUX_MODE7) /* gpmc_a0.gpio1[16] */
+		>;
+	};
+};
+
+
+&i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_pins>;
+	pinctrl-1 = <&acc_int1_pins>;
+	
+	clock-frequency = <100000>;
+	status = "okay";
+	
+	accelero: accelero@18 {
+		compatible = "st,accelero-lis2de12";
+		reg = <0x18>;
+		interrupt-parent = <&gpio1>;
+		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+	};
+};
