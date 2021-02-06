@@ -1,5 +1,5 @@
 # accelerometer
-LIS2DE12 accelerometer I2C driver
+I2C driver for LIS2DE12 accelerometer [BeagleBone Black Wireless]
 
 
 
