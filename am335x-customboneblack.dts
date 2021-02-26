@@ -18,8 +18,7 @@
 
 &i2c1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&i2c1_pins>;
-	pinctrl-1 = <&acc_int1_pins>;
+	pinctrl-0 = <&i2c1_pins &acc_int1_pins>;
 	
 	clock-frequency = <100000>;
 	status = "okay";
@@ -31,3 +30,4 @@
 		interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
 	};
 };
+
